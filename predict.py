@@ -1,23 +1,27 @@
-import read_data
+from read_data import  get_frame_length, read_word
 import random
-np.random.seed(1337)
-from training_model read_model
-import sys
-import scipy.io
 import numpy as np
+np.random.seed(1337)
+from training_model import read_model 
+import sys
+from os import listdir
+
 
 
 def predict():
    model = read_model()
-   videos = []
+   result = []
    datapoints, words = make_test_samples()
-   for datanumber in len(datapoints):
-      videos.append(read_data.read_word(datapoint[datanumber], read_data.get_frame_length(words[datanumber])))
-   print(model.predict(x=np.stack(videos), verbose=1, batch_size = len(datapoints)))
+   for datanumber in range(len(datapoints)):
+      video = np.stack(read_word(datapoints[datanumber], get_frame_length(words[datanumber])))
+#      print(video.shape)
+      result.append(model.predict(x=video.reshape(1, video.shape[0], video.shape[1]), verbose=0))
+      print(result[-1][0,:].argmax() + "for word: " + words[datanumber])
+#   for res in result:
 
 
 
-max = np.argmax(arr)
+
 
 
 
@@ -32,9 +36,11 @@ def make_test_samples():
    test_samples=[]
    for i in rnd_words_names:
       with open("words/" + i, 'r') as file:
-         lines = file.readline()
+         lines = file.readlines()
       datapoints = [(int(float(y[0])), y[1], int(float(y[2]))) for y in [x.strip().split(" ") for x in lines]]
       test_samples.append(random.choice(datapoints))
    return test_samples, [word[:-4] for word in rnd_words_names]
 
 
+
+predict()
