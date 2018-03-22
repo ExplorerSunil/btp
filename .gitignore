@@ -1,0 +1,29 @@
+#outputs of some commands
+out_logs/
+
+#preprocessed video frames
+target/
+
+#original database downloadable from GRID database website
+data/
+
+#start and end frame of the GRID words in each video
+words/
+
+#some temporary code
+experiment/
+others/
+
+#python caches
+__pycache__/
+
+#.txt files
+**.txt
+
+#recovery file of nano
+**.save
+
+#recovery file of vim
+**.swp
+
+
