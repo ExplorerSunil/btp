@@ -139,8 +139,8 @@ def train(model=None,
     return score
     
 
-def read_model(weights_filename='untrained_weight.h5',
-               topo_filename='untrained_topo.json'):
+def read_model(weights_filename='trained_weight.h5',
+               topo_filename='trained_topo.json'):
     print("Reading Model from "+weights_filename + " and " + topo_filename)
     print("Please wait, it takes time.")
     with open(topo_filename) as data_file:
